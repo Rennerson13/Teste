@@ -1,0 +1,33 @@
+public class SimplificadorFracoes {
+
+    public String simplificarFracao(int numerador, int denominador) {
+        if (denominador == 0) {
+            throw new IllegalArgumentException("Denominador não pode ser zero.");
+        }
+
+        int mdc = calcularMdc(numerador, denominador);
+        numerador /= mdc;
+        denominador /= mdc;
+
+        return numerador + "/" + denominador;
+    }
+
+    private int calcularMdc(int valor1, int valor2) {
+        while (valor2 != 0) {
+            int temp = valor2;
+            valor2 = valor1 % valor2;
+            valor1 = temp;
+        }
+        return valor1;
+    }
+
+    public static void main(String[] args) {
+        SimplificadorFracoes simplificador = new SimplificadorFracoes();
+
+        String resultado1 = simplificador.simplificarFracao(10, 20);
+        String resultado2 = simplificador.simplificarFracao(7, 2);
+
+        System.out.println("Resultado 1: " + resultado1);
+        System.out.println("Resultado 2: " + resultado2);
+    }
+}
